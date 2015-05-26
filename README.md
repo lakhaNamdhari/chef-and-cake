@@ -39,9 +39,9 @@ The product of qualities of the dishes modulo 10<sup>9</sup>.+7.
 
 #### Constraints
 
-1 ≤ N, Q ≤ 107
+1 ≤ N, Q ≤ 10<sup>7</sup>
 1 ≤ K ≤ N
-0 ≤ a, b, c, d, e, f, r, s, t, m, A[1] ≤ 109+7
+0 ≤ a, b, c, d, e, f, r, s, t, m, A[1] ≤ 10<sup>9</sup>+7
 1 ≤ Lm ≤ N - K + 1
 1 ≤ Dm ≤ K + 1
 1 ≤ La, Lc ≤ Lm
@@ -52,7 +52,7 @@ The product of qualities of the dishes modulo 10<sup>9</sup>.+7.
 ##### Sub tasks
 
 Subtask #1: 1 ≤ N, Q ≤ 1000 (10 points)
-Subtask #2: 1 ≤ Q ≤ 104 (20 points)
+Subtask #2: 1 ≤ Q ≤ 10<sup>4</sup> (20 points)
 Subtask #3: original constraints (70 points)
 
 #### Example
