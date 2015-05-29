@@ -68,11 +68,62 @@ function processInput( callback ){
 }
 
 var createIngridients = function( input ){
+	var N = input[0].N;
+	var a = input[1].a;
+	var b = input[1].b;
+	var c = input[1].c;
+	var d = input[1].d;
+	var e = input[1].e;
+	var f = input[1].f;
+	var r = input[1].r;
+	var s = input[1].s;
+	var t = input[1].t;
+	var m = input[1].m;
+	var A = [], x;
 
+	A[1] = input[1].A;
+
+	for ( x = 2; x <= N; i++ ){
+		if(t^x % s  <= r) {
+			 A[x] = (a*A[x-1]^2 + b*A[x-1] + c) % m
+		}   
+	    else{
+	        A[x] = (d*A[x-1]^2 + e*A[x-1] + f) % m
+	    }
+	}
+
+	return A;
+}
+
+var min = function(a, b){
+	return a < b ? a : b;
 }
 
 var createDishes = function( input ){
+	var Q = input[0].Q;
+	var L1 = input[2].L1;
+	var La = input[2].La;
+	var Lc = input[2].Lc;
+	var Lm = input[2].Lm;
+	var D1 = input[2].D1;
+	var Da = input[2].Da;
+	var Dc = input[2].Dc;
+	var Dm = input[2].Dm;
 
+	var dish = [], i, L, R;
+
+	for (i = 1; i <= Q; i++){
+	    L1 = (La * L1 + Lc) % Lm;
+	    D1 = (Da * D1 + Dc) % Dm; 
+	    L = L1 + 1;
+	    R = min(L + K - 1 + D1, N);
+	    dish.push({
+	    	L: L,
+	    	R: R
+	    });
+	}
+	
+	return dish;
 }
 
 var findDishQualities = function( dishes, ingridients ){
