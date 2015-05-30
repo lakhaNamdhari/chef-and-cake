@@ -33,7 +33,7 @@ function processInput( callback ){
 			});
 		}
 
-		elseif ( i == 2 ){
+		else if ( i == 2 ){
 			input.push({
 				a: parseInt( helper[0], 10),
 				b: parseInt( helper[1], 10),
@@ -49,7 +49,7 @@ function processInput( callback ){
 			});
 		}
 
-		elseif ( i == 1 ){
+		else if ( i == 1 ){
 			input.push({
 				L1: parseInt( helper[0], 10),
 				La: parseInt( helper[1], 10),
@@ -69,7 +69,7 @@ function processInput( callback ){
 	});	
 }
 
-var createIngridients = function( input ){
+var createIngridients = function( input ){ 
 	var N = input[0].N;
 	var a = input[1].a;
 	var b = input[1].b;
@@ -85,12 +85,12 @@ var createIngridients = function( input ){
 
 	A[1] = input[1].A;
 
-	for ( x = 2; x <= N; i++ ){
-		if(t^x % s  <= r) {
-			 A[x] = (a*A[x-1]^2 + b*A[x-1] + c) % m
+	for ( x = 2; x <= N; x++ ){
+		if( Math.pow(t, x) % s  <= r) {
+			 A[x] = ( a * Math.pow( A[x-1], 2 ) + b * A[x-1] + c ) % m;
 		}   
 	    else{
-	        A[x] = (d*A[x-1]^2 + e*A[x-1] + f) % m
+	        A[x] = ( d * Math.pow( A[x-1], 2 ) + e * A[x-1] + f ) % m
 	    }
 	}
 
@@ -115,6 +115,8 @@ var minValue = function( arr, s, e ){
 
 var createDishes = function( input ){
 	var Q = input[0].Q;
+	var K = input[0].K;
+	var N = input[0].N;
 	var L1 = input[2].L1;
 	var La = input[2].La;
 	var Lc = input[2].Lc;
@@ -154,7 +156,7 @@ var findDishQualities = function( dishes, ingridients ){
 var calcSumAndProduct = function( dishQualities ){
 	var i, sum = 0, product = 1;
 
-	for (; i < dishQualities.length; i++ ){
+	for ( i = 0; i < dishQualities.length; i++ ){
 		sum += dishQualities[ i ];
 		product *= dishQualities[ i ];
 
@@ -181,11 +183,14 @@ processInput(function(input){
 	// Dish Qualities
 	var DQ = [];
 	
-	A = createIngridients( input );
+	A = createIngridients( input );console.log( A );
 
-	Q = createDishes( input );
+	Q = createDishes( input );//console.log( Q );
 
-	DQ = findDishQualities( Q, A );
+
+	DQ = findDishQualities( Q, A );//console.log( DQ );
+
 
 	console.log( calcSumAndProduct( DQ ) );
+	process.exit();
 });
