@@ -4,6 +4,8 @@
 *	@author : Lakha Singh
 */
 
+var MOD = 1000000007;
+
 // Read Input from console
 var readInput = function( callback ){
 	process.stdin.setEncoding('utf8');
@@ -99,6 +101,18 @@ var min = function(a, b){
 	return a < b ? a : b;
 }
 
+var minValue = function( arr, s, e ){
+	var minVal = arr[s++], i;
+
+	for ( ; s <= e; s++ ){
+		if ( minVal > arr[s]){
+			minVal = arr[s];
+		}
+	}
+
+	return minVal;
+}
+
 var createDishes = function( input ){
 	var Q = input[0].Q;
 	var L1 = input[2].L1;
@@ -128,10 +142,32 @@ var createDishes = function( input ){
 
 var findDishQualities = function( dishes, ingridients ){
 
+	var i = 0, dq = [];
+
+	for (; i < dishes.length; i++ ){
+		dq.push( minValue( ingridients, dishes[ i ].L, dishes[ i ].R ) );
+	}
+
+	return dq;
 }
 
 var calcSumAndProduct = function( dishQualities ){
+	var i, sum = 0, product = 1;
 
+	for (; i < dishQualities.length; i++ ){
+		sum += dishQualities[ i ];
+		product *= dishQualities[ i ];
+
+		if ( sum >= MOD ){
+			sum -= MOD;
+		}
+
+		if ( product >= MOD ){
+			product %= MOD;
+		}
+	}
+
+	return sum + ' ' + product;
 }
 
 // start
